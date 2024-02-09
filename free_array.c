@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   free_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avacca <avacca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 16:01:16 by andi              #+#    #+#             */
-/*   Updated: 2024/02/08 13:38:12 by avacca           ###   ########.fr       */
+/*   Created: 2024/02/08 13:24:01 by avacca            #+#    #+#             */
+/*   Updated: 2024/02/08 14:05:24 by avacca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+char	**free_array(char **str)
 {
-	t_node_stack	*a;
-	t_node_stack	*b;
-	char			**arguments;
+	int j;
 
-	a = NULL;
-	b = NULL;
-	if (argc < 2 || (argc == 2 && !argv[1][0]))
-	{
-		write(1, "Error\n", 6);
-		return (1);
-	}
-	else
-	arguments = ft_join_and_split(argv);
-	if (!arguments)
-		return (-1);
-	create_stack_a(&a, &arguments, argc);
-	return (0);
+	j = 0;
+	while (str[j])
+		free(str[j++]);
+	free(str);
+	return (NULL);
 }
-
-// while (arguments[j])
-// 	{
-// 		printf("%s", arguments[j]);
-// 		j++;
-// 	}
-// return (0);

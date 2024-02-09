@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andi <andi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: avacca <avacca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:03:41 by andi              #+#    #+#             */
-/*   Updated: 2024/02/05 16:47:53 by andi             ###   ########.fr       */
+/*   Updated: 2024/02/08 14:04:43 by avacca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ static int	count_words_in_string(const char *str, char delimiter)
 	}
 	return (word_count);
 }
-
-char	*duplicate_word(const char *str, int start, int end)
+static char	*duplicate_word(const char *str, int start, int end)
 {
 	char	*word;
 	int		word_length;
@@ -55,15 +54,13 @@ char	*duplicate_word(const char *str, int start, int end)
 	word[i] = '\0';
 	return (word);
 }
-
-void	free_word(char **result, size_t *j)
+static void	free_word(char **result, size_t *j)
 {
 	while (*j > 0)
 		free(result[--(*j)]);
 	free(result);
 }
-
-int	logic(const char *s, char delimiter, char **result, size_t *j)
+static int	logic(const char *s, char delimiter, char **result, size_t *j)
 {
 	size_t	i;
 	int		start_index;
@@ -90,27 +87,28 @@ int	logic(const char *s, char delimiter, char **result, size_t *j)
 	}
 	return (1);
 }
-
 char	**ft_split(const char *s, char delimiter)
 {
 	char	**result;
 	size_t	j;
 
+	if (!s)
+		return (NULL);
 	result = malloc((count_words_in_string(s, delimiter) + 1) * sizeof(char *));
-	if (!s || result == NULL)
+	if (result == NULL)
 		return (NULL);
 	j = 0;
 	if (!logic(s, delimiter, result, &j))
 	{
+		free_array(result);
 		return (NULL);
 	}
 	result[j] = NULL;
 	return (result);
 }
-
 // int	main(void)
 // {
-// 	char **result = ft_split("pdesole", 'p');
+// 	char **result = ft_split("45 56", ' ');
 
 // 	if (result != NULL)
 // 	{

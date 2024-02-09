@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avacca <avacca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 16:01:16 by andi              #+#    #+#             */
-/*   Updated: 2024/02/08 13:38:12 by avacca           ###   ########.fr       */
+/*   Created: 2024/02/06 12:36:59 by avacca            #+#    #+#             */
+/*   Updated: 2024/02/08 13:57:11 by avacca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+long	ft_atoi(char *str)
 {
-	t_node_stack	*a;
-	t_node_stack	*b;
-	char			**arguments;
+	int			i;
+	long long	a;
+	long		b;
 
-	a = NULL;
-	b = NULL;
-	if (argc < 2 || (argc == 2 && !argv[1][0]))
+	i = 0;
+	a = 0;
+	b = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		write(1, "Error\n", 6);
-		return (1);
+		if (str[i] == '-')
+			b = -b;
+		i++;
 	}
-	else
-	arguments = ft_join_and_split(argv);
-	if (!arguments)
-		return (-1);
-	create_stack_a(&a, &arguments, argc);
-	return (0);
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		a = (a * 10) + (str[i++] - '0');
+	}
+	if (str[i] != '\0')
+		return (9999999999);
+	return (a * b);
 }
 
-// while (arguments[j])
-// 	{
-// 		printf("%s", arguments[j]);
-// 		j++;
-// 	}
-// return (0);
+// int main()
+// {
+// 	printf("%d\n", ft_atoi("    -2147483648 "));
+// }

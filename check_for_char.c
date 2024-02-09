@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_stack_a.c                                   :+:      :+:    :+:   */
+/*   check_for_char.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: avacca <avacca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 14:30:55 by andi              #+#    #+#             */
-/*   Updated: 2024/02/08 14:40:04 by avacca           ###   ########.fr       */
+/*   Created: 2024/02/07 14:30:39 by avacca            #+#    #+#             */
+/*   Updated: 2024/02/08 13:47:51 by avacca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int	create_stack_a(t_node_stack **a, char ***arguments, int argc)
+int	check_for_char(char *str)
 {
 	int	i;
-	int	*numbers;
-	int	j;
 
-	j = 0;
 	i = 0;
-	while ((*arguments)[i] != NULL)
+	while (str[i] != '\0')
 	{
-		if (ft_atoi((*arguments)[i]) > INT_MAX
-				|| ft_atoi((*arguments)[i]) < INT_MIN)
+		if ((str[i] >= 'A' && str[i] <= 'Z') && (str[i] >= 'a'
+				&& str[i] <= 'z'))
 		{
-			free_array(*arguments);
-			write(1, "Error: incorrect input\n", 24);
-			exit(1);
+			return (-1);
 		}
 		i++;
 	}
-	free_array(*arguments);
 	return (1);
 }
